@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - TransmissionStockApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TransmissionStockApp.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center p-2 border-bottom">
+        <div>
+            <img src="~/images\buyuk-logo.png" alt="Logo" style="width:100px; height:75px; object-fit: contain;">
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle" style="font-size: 0.8rem;"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li>
+                    <button class="dropdown-item" id="logoutBtn" type="button">Çıkış Yap</button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> <!-- 1. jQuery her şeyden önce -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> <!-- 2. Bootstrap (jQuery'den sonra) -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script> <!-- 3. Ek kütüphaneler -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> <!-- 4. Select2 jQuery sonrası yüklenmeli -->
+    <!-- 5. Sıra: senin kendi JS dosyaların -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/index.js" asp-append-version="true"></script>
+    <script src="~/js/edit-table-modal-transmission-brand.js" asp-append-version="true"></script>
+    <script src="~/js/edit-table-modal-transmission-status.js" asp-append-version="true"></script>
+    <script src="~/js/edit-table-modal-transmission-drivetype.js" asp-append-version="true"></script>
+    <script src="~/js/edit-table-modal-stock-location.js" asp-append-version="true"></script>
+    <script src="~/js/edit-table-modal-vehicle-brand-model.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

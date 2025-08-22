@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|c:\\users\\pc\\desktop\\transmissionstockapp\\transmissionstockapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|c:\\users\\pc\\desktop\\transmissionstockapp\\transmissionstockapp\\sql-scripts-ve-ornek-req\\ornek-test-verileri.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|solutionrelative:sql-scripts-ve-ornek-req\\ornek-test-verileri.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|c:\\users\\pc\\desktop\\transmissionstockapp\\transmissionstockapp\\sql-scripts-ve-ornek-req\\arac-marka-model-script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|solutionrelative:sql-scripts-ve-ornek-req\\arac-marka-model-script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|c:\\users\\pc\\desktop\\transmissionstockapp\\transmissionstockapp\\wwwroot\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|solutionrelative:wwwroot\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|c:\\users\\pc\\desktop\\transmissionstockapp\\transmissionstockapp\\sql-scripts-ve-ornek-req\\arac-marka-model-script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|solutionrelative:sql-scripts-ve-ornek-req\\arac-marka-model-script.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|c:\\users\\pc\\desktop\\transmissionstockapp\\transmissionstockapp\\sql-scripts-ve-ornek-req\\ornek-test-verileri.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{BF1E3780-79DB-4E5F-9A50-0EA1EDB80EB3}|TransmissionStockApp.csproj|solutionrelative:sql-scripts-ve-ornek-req\\ornek-test-verileri.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 140,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-22T16:32:56.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ornek-test-verileri.sql ",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\sql-scripts-ve-ornek-req\\ornek-test-verileri.sql",
+              "RelativeDocumentMoniker": "sql-scripts-ve-ornek-req\\ornek-test-verileri.sql",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\sql-scripts-ve-ornek-req\\ornek-test-verileri.sql",
+              "RelativeToolTip": "sql-scripts-ve-ornek-req\\ornek-test-verileri.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-08-22T16:24:10.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "arac-marka-model-script.sql ",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\sql-scripts-ve-ornek-req\\arac-marka-model-script.sql",
+              "RelativeDocumentMoniker": "sql-scripts-ve-ornek-req\\arac-marka-model-script.sql",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\sql-scripts-ve-ornek-req\\arac-marka-model-script.sql",
+              "RelativeToolTip": "sql-scripts-ve-ornek-req\\arac-marka-model-script.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-08-22T16:24:05.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\wwwroot\\js\\index.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\index.js",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\TransmissionStockApp\\TransmissionStockApp\\wwwroot\\js\\index.js",
+              "RelativeToolTip": "wwwroot\\js\\index.js",
+              "ViewState": "AgIAAIEDAAAAAAAAAAAAAJQDAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-22T16:16:04.274Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

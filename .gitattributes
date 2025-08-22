@@ -1,0 +1,29 @@
+# Varsayılan olarak text dosyalarını normalize et
+* text=auto
+
+# C# kodları, JSON, JS, CSS vs. -> CRLF değil LF kullansın
+*.cs text eol=lf
+*.json text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.cshtml text eol=lf
+
+# Windows scriptleri CRLF kalsın
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Linux/Mac scriptleri LF kalsın
+*.sh text eol=lf
+
+# Binary dosyalar (resimler, fontlar vs.) için dönüşüm olmasın
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.pdf binary
