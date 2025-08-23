@@ -82,7 +82,7 @@ async function openEditModal(row) {
     $("#transmissionBrand").val(stock.transmissionBrandId).trigger("change");
     $("#vehicleBrand").val(stock.vehicleBrandId).trigger("change");
     $("#vehicleModel").val(stock.vehicleModelId).trigger("change");
-    $("#driveType").val(stock.driveType).trigger("change");
+    $("#driveType").val(stock.driveTypeId).trigger("change");
     $("#transmissionStatus").val(stock.transmissionStatusId).trigger("change");
 
     form.querySelector("#rowIndex").value = row.rowIndex - 1;
