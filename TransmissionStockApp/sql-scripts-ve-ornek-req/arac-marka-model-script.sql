@@ -496,9 +496,9 @@ INSERT INTO TransmissionBrands (Name) VALUES
 
 
 
-INSERT INTO TransmissionDriveTypes (Value, Name) VALUES
-(2, '2 çeker'),
-(4, '4 çeker');
+INSERT INTO TransmissionDriveTypes (Name) VALUES
+('2 çeker'),
+('4 çeker');
 
 
 
