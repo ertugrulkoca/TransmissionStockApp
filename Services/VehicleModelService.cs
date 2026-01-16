@@ -42,8 +42,8 @@ namespace TransmissionStockApp.Services
             try
             {
                 var exists = await _context.VehicleModels
-                .AsNoTracking()
-                .AnyAsync(w => w.Name == dto.Name);
+                    .AsNoTracking()
+                    .AnyAsync(m => m.VehicleBrandId == dto.VehicleBrandId && m.Name == dto.Name);
 
                 if (exists)
                     return OperationResult<VehicleModelViewModel>.Fail("Bu model adı zaten mevcut.");
@@ -68,6 +68,15 @@ namespace TransmissionStockApp.Services
                 var model = await _context.VehicleModels.FindAsync(dto.Id);
                 if (model == null)
                     return OperationResult<VehicleModelViewModel>.Fail("Model bulunamadı");
+
+                var exists = await _context.VehicleModels
+                    .AsNoTracking()
+                    .AnyAsync(m => m.Id != dto.Id
+                        && m.VehicleBrandId == dto.VehicleBrandId
+                        && m.Name == dto.Name);
+
+                if (exists)
+                    return OperationResult<VehicleModelViewModel>.Fail("Bu model adı zaten mevcut.");
 
                 model.Name = dto.Name;
                 model.VehicleBrandId = dto.VehicleBrandId;
