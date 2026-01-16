@@ -50,6 +50,13 @@ namespace TransmissionStockApp.Services
         {
             try
             {
+                var exists = await _context.TransmissionDriveTypes
+                .AsNoTracking()
+                .AnyAsync(w => w.Name == dto.Name);
+
+                if (exists)
+                    return OperationResult<TransmissionDriveTypeViewModel>.Fail("Bu çekiş türü zaten mevcut.");
+
                 var driveType = new TransmissionDriveType { Name = dto.Name };
                 var entity = _mapper.Map<TransmissionDriveType>(driveType);
                 await _context.TransmissionDriveTypes.AddAsync(entity);

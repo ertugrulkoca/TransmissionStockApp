@@ -41,6 +41,13 @@ namespace TransmissionStockApp.Services
         {
             try
             {
+                var exists = await _context.VehicleModels
+                .AsNoTracking()
+                .AnyAsync(w => w.Name == dto.Name);
+
+                if (exists)
+                    return OperationResult<VehicleModelViewModel>.Fail("Bu model adı zaten mevcut.");
+
                 var model = _mapper.Map<VehicleModel>(dto);
                 _context.VehicleModels.Add(model);
                 await _context.SaveChangesAsync();

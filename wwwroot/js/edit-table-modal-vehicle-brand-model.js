@@ -121,7 +121,7 @@ async function saveBrand(e) {
         const res = await fetch(url, {
             method,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id, name, vehicleBrandId: brandId })
+            body: JSON.stringify({ id, name, vehicleBrandId: id })
         });
 
         const { json } = await readOpResult(res);
@@ -132,7 +132,7 @@ async function saveBrand(e) {
                 text: "Model kaydedildi."
             });
             clearModelForm();
-            updateVehicleModelSelect(brandId);
+            updateVehicleModelSelect(id);
         } else {
             await Swal.fire({
                 icon: 'error',

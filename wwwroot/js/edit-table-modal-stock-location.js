@@ -42,7 +42,7 @@ async function refreshMainLookupShelves() {
 async function readErrorMessage(res) {
     try {
         const j = await res.json();
-        return j?.message || j?.error || (j?.errors ? JSON.stringify(j.errors) : null);
+        return j?.message || j?.error || j?.errorMessage || (j?.errors ? JSON.stringify(j.errors) : null);
     } catch {
         try { return await res.text(); } catch { return null; }
     }

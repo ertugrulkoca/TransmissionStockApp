@@ -50,6 +50,13 @@ namespace TransmissionStockApp.Services
         {
             try
             {
+                var exists = await _context.TransmissionStatuses
+                .AsNoTracking()
+                .AnyAsync(w => w.Name == dto.Name);
+
+                if (exists)
+                    return OperationResult<TransmissionStatusViewModel>.Fail("Bu şanzıman durumu zaten mevcut.");
+
                 var status = new TransmissionStatus { Name = dto.Name };
                 _context.TransmissionStatuses.Add(status);
                 await _context.SaveChangesAsync();

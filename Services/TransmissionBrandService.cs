@@ -3,6 +3,7 @@ using TransmissionStockApp.Data;
 using TransmissionStockApp.Helpers;
 using TransmissionStockApp.Models.DTOs;
 using TransmissionStockApp.Models.Entities;
+using TransmissionStockApp.Models.ViewModels;
 using TransmissionStockApp.Services.Interfaces;
 
 namespace TransmissionStockApp.Services
@@ -44,6 +45,13 @@ namespace TransmissionStockApp.Services
         {
             try
             {
+                var exists = await _context.TransmissionBrands
+                .AsNoTracking()
+                .AnyAsync(w => w.Name == dto.Name);
+
+                if (exists)
+                    return OperationResult<TransmissionBrand>.Fail("Bu şanzıman adı zaten mevcut.");
+
                 var brand = new TransmissionBrand { Name = dto.Name };
                 _context.TransmissionBrands.Add(brand);
                 await _context.SaveChangesAsync();

@@ -4,6 +4,7 @@ using TransmissionStockApp.Data;
 using TransmissionStockApp.Models.DTOs;
 using TransmissionStockApp.Models.Entities;
 using TransmissionStockApp.Models.ViewModels;
+using TransmissionStockApp.Repositories;
 using TransmissionStockApp.Services.Interfaces;
 
 namespace TransmissionStockApp.Services
@@ -12,11 +13,13 @@ namespace TransmissionStockApp.Services
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ITransmissionStockRepository _repository;
 
-        public VehicleBrandService(AppDbContext context, IMapper mapper)
+        public VehicleBrandService(AppDbContext context, IMapper mapper, ITransmissionStockRepository repository)
         {
             _context = context;
             _mapper = mapper;
+            _repository = repository;
         }
 
         public async Task<OperationResult<List<VehicleBrandViewModel>>> GetAllAsync()
@@ -37,6 +40,14 @@ namespace TransmissionStockApp.Services
         {
             try
             {
+                var exists = await _context.VehicleBrands
+                .AsNoTracking()
+                .AnyAsync(w => w.Name == dto.Name);
+
+                if (exists)
+                    return OperationResult<VehicleBrandViewModel>.Fail("Bu depo adı zaten mevcut.");
+
+
                 var brand = _mapper.Map<VehicleBrand>(dto);
                 _context.VehicleBrands.Add(brand);
                 await _context.SaveChangesAsync();
