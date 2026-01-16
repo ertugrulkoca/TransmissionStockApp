@@ -1,0 +1,463 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!-- Ortalanmış Başlık -->
+<div class="text-center my-4">
+    <h2>Şanzıman Stok Takip</h2>
+</div>
+
+<div class="container-fluid my-4 pb-5">
+
+    <div class="mb-3 d-flex justify-content-center">
+        <input type="text" class="form-control" id="generalSearch" placeholder="Genel arama..." style="width: 50%;">
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div id="active-filters"></div>
+        <div>
+            <button class="btn btn-success" id="add-new-btn"><i class="bi bi-plus-lg"></i> Yeni Kayıt</button>
+            <button class="btn btn-primary" id="edit-table-btn"><i class="bi bi-plus-lg"></i> Tablo Düzenle</button>
+            <button class="btn btn-outline-secondary ms-2" id="printTableBtn"><i class="bi bi-printer"></i> Yazdır</button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table id="stockTable" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Yedek Parça No</th>
+                    <th scope="col">Şanz. Marka</th>
+                    <th scope="col">Kod</th>
+                    <th scope="col">Araç Marka</th>
+                    <th scope="col">Araç Model</th>
+                    <th scope="col">Araç Yıl</th>
+                    <th scope="col">Numara</th>
+                    <th scope="col">Çekiş</th>
+                    <th scope="col">Durum</th>
+                    <th scope="col">Depo</th>
+                    <th scope="col">Raf</th>
+                    <th scope="col">Adet</th>
+                    <th scope="col">Açıklama</th>
+                    <th scope="col" class="text-center">Aksiyonlar</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="paginationControls" class="d-flex justify-content-center mt-3"></div>
+    </div>
+    <div class="mb-2 d-flex justify-content-between">
+        <span id="total-adet" class="fw-bold"></span>
+        <span id="durum-adet" class="text-muted"></span>
+    </div>
+</div>
+
+
+
+<!-- Yeni Kayıt / Düzenle Modal -->
+<div class="modal fade" id="recordModal" tabindex="-1" aria-labelledby="recordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="recordForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recordModalLabel">Yeni Kayıt</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <!-- Manuel girilen inputlar -->
+                        <div class="col-md-4">
+                            <label for="sparePartNo" class="form-label">Yedek Parça No</label>
+                            <input type="text" class="form-control" id="sparePartNo" name="sparePartNo" required>
+                        </div>
+
+                        <!-- Select ile olacaklar -->
+                        <div class="col-md-4">
+                            <label for="transmissionBrand" class="form-label">Şanz. Marka</label>
+                            <select class="form-select select2" id="transmissionBrand" name="transmissionBrand" required>
+                                <option value="">Seçiniz</option>
+                                <!-- JS ile doldurulacak -->
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="transmissionCode" class="form-label">Kod</label>
+                            <input type="text" class="form-control" id="transmissionCode" name="transmissionCode" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="vehicleBrand" class="form-label">Araç Marka</label>
+                            <select class="form-select select2" id="vehicleBrand" name="vehicleBrand">
+                                <option value="">Seçiniz</option>
+                                <!-- JS ile doldurulacak -->
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="vehicleModel" class="form-label">Araç Model</label>
+                            <select class="form-select select2" id="vehicleModel" name="vehicleModel">
+                                <option value="">Seçiniz</option>
+                                <!-- JS ile marka seçimine göre doldurulacak -->
+                            </select>
+                        </div>
+
+                        <!-- Manuel inputlar -->
+                        <div class="col-md-4">
+                            <label for="vehicleYear" class="form-label">Araç Yıl</label>
+                            <input type="number" class="form-control" id="vehicleYear" name="vehicleYear" min="1900" max="2100">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="transmissionNo" class="form-label">Numara</label>
+                            <input type="text" class="form-control" id="transmissionNo" name="transmissionNo" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="driveType" class="form-label">Çekiş</label>
+                            <select class="form-select select2" id="driveType" name="driveType">
+                                <option value="">Seçiniz</option>
+                                <!-- JS ile doldurulacak -->
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="transmissionStatus" class="form-label">Durum</label>
+                            <select class="form-select select2" id="transmissionStatus" name="transmissionStatus" required>
+                                <option value="">Seçiniz</option>
+                                <!-- JS ile doldurulacak -->
+                            </select>
+                        </div>
+
+                        @* <label class="form-label mt-2">Depo, Raf ve Adet Bilgileri</label>
+                        <div id="stockLocationsWrapper"></div>
+
+                        <button type="button" id="addStockLocation" class="btn btn-sm btn-secondary mt-2 d-block mx-auto">
+                            + Raf Satırı Ekle
+                        </button>
+
+                        <div class="col-md-12">
+                            <label for="description" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="description" name="description" rows="2"></textarea>
+                        </div> *@
+                        
+                        <!-- Lokasyonlar -->
+                        <div class="mt-3">
+                            <hr style="border-top: 2px solid #999; opacity:1;">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="mb-0">Lokasyon</h6>
+                                <button type="button" class="btn btn-success btn-sm" id="btnAddShelfRow">
+                                    <i class="bi bi-plus-lg"></i> Satır Ekle
+                                </button>
+                            </div>
+
+                            <div id="shelfRowsContainer"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <hr style="border-top: 2px solid #999; opacity:1;">
+                            <label for="description" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="description" name="description" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="rowIndex" value="">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button id="saveButton" type="submit" class="btn btn-primary">Kaydet</button>
+                    <input type="hidden" id="stockId" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Silme Onay Modalı -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Silme Onayı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body">
+                Bu kaydı silmek istediğinize emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- tablo sütun düzenleme modal -->
+<div class="modal fade" id="editTableModal" tabindex="-1" aria-labelledby="editTableModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTableModalLabel">Veri Yönetimi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- Sekmeler -->
+                <ul class="nav nav-tabs mb-3" id="editTableModalTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="tab-transmission-brand-tab" data-bs-toggle="tab" data-bs-target="#tabTransmissionBrand" type="button" role="tab">
+                            Şanz. Marka
+                        </button>
+                    </li>
+                    <!-- Diğer sekmeler burada olacak -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-transmission-status-tab" data-bs-toggle="tab" data-bs-target="#tabTransmissionStatus" type="button" role="tab">
+                            Şanz. Durum
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-transmission-drive-tab" data-bs-toggle="tab" data-bs-target="#tabTransmissionDriveType" type="button" role="tab">
+                            Çekiş Türü
+                        </button>
+                    </li>
+@*                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-transmission-stock-location-tab" data-bs-toggle="tab" data-bs-target="#tabWarehouse" type="button" role="tab">
+                            Depolar
+                        </button>
+                    </li> *@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-transmission-stock-location-tab" data-bs-toggle="tab" data-bs-target="#tabStockLocation" type="button" role="tab">
+                            Depolar ve Raflar
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-transmission-stock-location-tab" data-bs-toggle="tab" data-bs-target="#tabVehicleBrandModel" type="button" role="tab">
+                            Araç marka ve model
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="editTableModalTabContent">
+                    <!-- Şanz. Marka Sekmesi -->
+                    <div class="tab-pane fade show active" id="tabTransmissionBrand" role="tabpanel">
+                        <div class="row mb-3">
+                            <div class="col-md-9">
+                                <label for="selectTransmissionBrand" class="form-label">Marka Seç</label>
+                                <select id="selectTransmissionBrand" class="form-select">
+                                    <option></option> <!-- Bu gerekli olabilir -->
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end justify-content-end">
+                                <button type="button" class="btn btn-success" id="btnNewTransmissionBrand">
+                                    <i class="bi bi-plus-lg"></i> Yeni Ekle
+                                </button>
+                            </div>
+                        </div>
+
+                        <form id="formTransmissionBrand">
+                            <input type="hidden" id="transmissionBrandId">
+                            <div class="mb-3">
+                                <label for="transmissionBrandName" class="form-label">Marka Adı</label>
+                                <input type="text" class="form-control" id="transmissionBrandName" required>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                                <button type="button" class="btn btn-danger" id="btnDeleteTransmissionBrand">Sil</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <!-- Diğer sekmelerin div'leri buraya eklenecek -->
+                    <!-- Şanz. Durum Sekmesi -->
+                    <div class="tab-pane fade" id="tabTransmissionStatus" role="tabpanel">
+                        <div class="row mb-3">
+                            <div class="col-md-9">
+                                <label for="selectTransmissionStatus" class="form-label">Durum Seç</label>
+                                <select id="selectTransmissionStatus" class="form-select">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end justify-content-end">
+                                <button type="button" class="btn btn-success" id="btnNewTransmissionStatus">
+                                    <i class="bi bi-plus-lg"></i> Yeni Ekle
+                                </button>
+                            </div>
+                        </div>
+
+                        <form id="formTransmissionStatus">
+                            <input type="hidden" id="transmissionStatusId">
+                            <div class="mb-3">
+                                <label for="transmissionStatusName" class="form-label">Durum Adı</label>
+                                <input type="text" class="form-control" id="transmissionStatusName" required>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                                <button type="button" class="btn btn-danger" id="btnDeleteTransmissionStatus">Sil</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <!-- Çekiş Tipi Sekmesi -->
+                    <div class="tab-pane fade" id="tabTransmissionDriveType" role="tabpanel" aria-labelledby="tabTransmissionDriveType-tab">
+                        <div class="row mb-3">
+                            <div class="col-md-9">
+                                <label for="selectTransmissionDriveType" class="form-label">Çekiş Tipi Seç</label>
+                                <select id="selectTransmissionDriveType" class="form-select">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end justify-content-end">
+                                <button type="button" class="btn btn-success" id="btnNewTransmissionDriveType">
+                                    <i class="bi bi-plus-lg"></i> Yeni Ekle
+                                </button>
+                            </div>
+                        </div>
+
+                        <form id="formTransmissionDriveType">
+                            <input type="hidden" id="transmissionDriveTypeId" />
+                            @* <div class="mb-3">
+                                <label for="transmissionDriveTypeValue" class="form-label">Değer</label>
+                                <input type="number" class="form-control" id="transmissionDriveTypeValue" required />
+                            </div> *@
+                            <div class="mb-3">
+                                <label for="transmissionDriveTypeName" class="form-label">Adı</label>
+                                <input type="text" class="form-control" id="transmissionDriveTypeName" required maxlength="100" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                                <button type="button" class="btn btn-danger" id="btnDeleteTransmissionDriveType">Sil</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Stok Lokasyonu Sekmesi -->
+                    <div class="tab-pane fade" id="tabStockLocation" role="tabpanel" aria-labelledby="tabStockLocation-tab">
+                        <div class="row mb-3">
+                            <div class="col-md-9">
+                                <label for="selectWarehouse" class="form-label">Depo Seç</label>
+                                <select id="selectWarehouse" class="form-select">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end justify-content-end">
+                                <button type="button" class="btn btn-success" id="btnNewWarehouse">
+                                    <i class="bi bi-plus-lg"></i> Yeni Ekle
+                                </button>
+                            </div>
+                        </div>
+
+                        <form id="formWarehouse">
+                            <input type="hidden" id="WarehouseId" />
+                            <div class="mb-3">
+                                <label for="WarehouseCode" class="form-label">Depo Kodu</label>
+                                <input type="text" class="form-control" id="WarehouseCode" required maxlength="50" />
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                                <button type="button" class="btn btn-danger" id="btnDeleteWarehouse">Sil</button>
+                            </div>
+                        </form>
+
+                        <h5 class="mt-4">Raf Yönetimi</h5>
+
+                        <div class="row mb-3">
+                            <div class="col-md-9">
+                                <label for="selectShelf" class="form-label">Raf Seç</label>
+                                <select id="selectShelf" class="form-select">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end justify-content-end">
+                                <button type="button" class="btn btn-success" id="btnNewStockLocation">
+                                    <i class="bi bi-plus-lg"></i> Yeni Ekle
+                                </button>
+                            </div>
+                        </div>
+
+                        <form id="formStockLocation">
+                            <input type="hidden" id="stockLocationId" />
+                            <div class="mb-3">
+                                <label for="stockLocationShelfCode" class="form-label">Raf Kodu</label>
+                                <input type="text" class="form-control" id="stockLocationShelfCode" required maxlength="50" />
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Kaydet</button>
+                                <button type="button" class="btn btn-danger" id="btnDeleteStockLocation">Sil</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Araç Marka ve Model Sekmesi -->
+                    <div class="tab-pane fade" id="tabVehicleBrandModel" role="tabpanel" aria-labelledby="tabVehicleBrandModel-tab">
+                        <div class="row mb-3">
+                            <div class="col-md-9">
+                                <label for="selectVehicleBrand" class="form-label">Araç Markası Seç</label>
+                                <select id="selectVehicleBrand" class="form-select">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end justify-content-end">
+                                <button type="button" class="btn btn-success" id="btnNewVehicleBrand">
+                                    <i class="bi bi-plus-lg"></i> Yeni Marka
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Marka Formu -->
+                        <form id="formVehicleBrand">
+                            <input type="hidden" id="vehicleBrandId" />
+                            <div class="mb-3">
+                                <label for="vehicleBrandName" class="form-label">Marka Adı</label>
+                                <input type="text" class="form-control" id="vehicleBrandName" required maxlength="100" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Marka Kaydet</button>
+                                <button type="button" class="btn btn-danger" id="btnDeleteVehicleBrand">Marka Sil</button>
+                            </div>
+                        </form>
+
+                        <hr />
+
+                        <h5 class="mt-4">Model Yönetimi</h5>
+
+                        <!-- Model Listesi -->
+                        <div class="mb-3">
+                            <label for="selectVehicleModel" class="form-label">Model Seç</label>
+                            <select id="selectVehicleModel" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
+
+                        <!-- Model Formu -->
+                        <form id="formVehicleModel">
+                            <input type="hidden" id="vehicleModelId" />
+                            <div class="mb-3">
+                                <label for="vehicleModelName" class="form-label">Model Adı</label>
+                                <input type="text" class="form-control" id="vehicleModelName" required maxlength="100" />
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Model Kaydet</button>
+                                <button type="button" class="btn btn-danger" id="btnDeleteVehicleModel">Model Sil</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>

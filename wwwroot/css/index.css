@@ -1,0 +1,122 @@
+﻿
+.filter-icon {
+    cursor: pointer;
+    margin-left: 6px;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.filter-icon:hover {
+    color: #000;
+}
+
+#active-filters span {
+    margin-right: 10px;
+    background: #f1f1f1;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+#active-filters span button {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 0.9rem;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+tbody td {
+    text-transform: uppercase;
+}
+
+header {
+    background-color: #f8f9fa;
+    position: relative;
+    padding: 10px 20px; /* biraz daha dar padding */
+}
+
+header .dropdown {
+    position: absolute;
+    top: 10px; /* yukarıdan biraz boşluk */
+    right: 20px; /* sağdan biraz boşluk */
+}
+
+header .dropdown button.btn {
+    font-size: 0.8rem; /* ikon boyutunu küçült */
+    padding: 0.25rem 0.5rem;
+}
+
+@media print {
+    .filter-icon,
+    thead input {
+        display: none !important;
+    }
+}
+
+table tfoot td {
+    font-weight: bold;
+    text-align: right;
+    padding-top: 10px;
+}
+
+#total-sanziman, #other-totals {
+    font-size: 1.1rem;
+}
+
+#total-sanziman {
+    color: var(--bs-primary); /* Bootstrap primary */
+}
+
+#other-totals {
+    color: var(--bs-success); /* Bootstrap success */
+}
+
+/* Select2'nin Bootstrap 5 form kontrolleri gibi görünmesi için */
+
+.select2-container--bootstrap-5 .select2-selection {
+    height: calc(1.5em + 0.75rem + 2px); /* bootstrap input yüksekliği */
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    box-shadow: none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0.25);
+}
+
+.select2-container--bootstrap-5 .select2-selection__rendered {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.select2-container--bootstrap-5 .select2-selection__arrow {
+    height: calc(1.5em + 0.75rem + 2px);
+    right: 0.75rem;
+}
+
+#stock-locations-wrapper .stock-location-row {
+    margin-bottom: 0.5rem;
+}
+
+#addStockLocation {
+    max-width: 200px;
+    width: 100%;
+}
+
+
+.select2-container.is-invalid .select2-selection {
+    border: 1px solid #dc3545 !important; /* Bootstrap kırmızı */
+    border-radius: 0.25rem;
+}
