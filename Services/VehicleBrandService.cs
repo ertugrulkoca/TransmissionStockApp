@@ -45,7 +45,7 @@ namespace TransmissionStockApp.Services
                 .AnyAsync(w => w.Name == dto.Name);
 
                 if (exists)
-                    return OperationResult<VehicleBrandViewModel>.Fail("Bu depo adı zaten mevcut.");
+                    return OperationResult<VehicleBrandViewModel>.Fail("Bu marka adı zaten mevcut.");
 
 
                 var brand = _mapper.Map<VehicleBrand>(dto);
