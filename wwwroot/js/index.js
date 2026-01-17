@@ -10,7 +10,7 @@ const printTableBtn = document.getElementById("printTableBtn");
 const shelfRowsContainer = document.getElementById('shelfRowsContainer');
 const btnAddShelfRow = document.getElementById('btnAddShelfRow');
 
-const ACTION_COL_INDEX = 13;
+const ACTION_COL_INDEX = 12;
 
 //create
 const saveButton = document.getElementById("saveButton");
@@ -172,20 +172,16 @@ function updateSummary(data) {
 
 function parseShelfSummary(summary) {
     const s = (summary || "").trim();
-    if (!s) return { depotText: "", shelfText: "" };
+    if (!s) return "";
 
     // Beklenen format örn: "Depo1: A1(2), A2(1) | Depo2: B1(3)"
     const parts = s.split("|").map(x => x.trim()).filter(Boolean);
-
-    const depots = [];
     const shelfParts = [];
 
     for (const p of parts) {
         const idx = p.indexOf(":");
         if (idx > -1) {
-            const depot = p.substring(0, idx).trim();
             const shelves = p.substring(idx + 1).trim();
-            if (depot) depots.push(depot);
             if (shelves) shelfParts.push(shelves);
         } else {
             // Format farklıysa: komple raf olarak göster
@@ -193,10 +189,7 @@ function parseShelfSummary(summary) {
         }
     }
 
-    return {
-        depotText: depots.join(" | "),
-        shelfText: shelfParts.join(" | ")
-    };
+    return shelfParts.join(" | ");
 }
 
 function applyFilters() {
@@ -217,10 +210,9 @@ function applyFilters() {
                 case 6: fieldValue = stock.transmissionNumber; break;
                 case 7: fieldValue = stock.driveTypeName || ""; break;
                 case 8: fieldValue = stock.transmissionStatusName; break;
-                case 9: fieldValue = parseShelfSummary(stock.shelfSummary).depotText; break;
-                case 10: fieldValue = parseShelfSummary(stock.shelfSummary).shelfText; break;
-                case 11: fieldValue = stock.totalQuantity ? stock.totalQuantity.toString() : ""; break;
-                case 12: fieldValue = stock.description; break;
+                case 9: fieldValue = parseShelfSummary(stock.shelfSummary); break;
+                case 10: fieldValue = stock.totalQuantity ? stock.totalQuantity.toString() : ""; break;
+                case 11: fieldValue = stock.description; break;
                 default: fieldValue = "";
             }
 
@@ -240,8 +232,7 @@ function applyFilters() {
                 stock.transmissionNumber,
                 stock.driveTypeName || "",
                 stock.transmissionStatusName,
-                parseShelfSummary(stock.shelfSummary).depotText,
-                parseShelfSummary(stock.shelfSummary).shelfText,
+                parseShelfSummary(stock.shelfSummary),
                 stock.totalQuantity ? stock.totalQuantity.toString() : "",
                 stock.description
             ].join(" ").toUpperCase();
@@ -289,8 +280,7 @@ function renderPage(page) {
             <td>${stock.transmissionNumber ?? ''}</td>
             <td>${stock.driveTypeName ?? ''}</td>
             <td>${stock.transmissionStatusName ?? ''}</td>
-            <td>${parseShelfSummary(stock.shelfSummary).depotText}</td>
-            <td>${parseShelfSummary(stock.shelfSummary).shelfText}</td>
+            <td>${parseShelfSummary(stock.shelfSummary)}</td>
             <td>${stock.totalQuantity ?? 0}</td>
             <td>${stock.description ?? ''}</td>
             <td class="text-center">
