@@ -417,6 +417,8 @@ addNewBtn.addEventListener("click", () => {
     // gizli alan vs.
     const rowIndexInput = form.querySelector("#rowIndex");
     if (rowIndexInput) rowIndexInput.value = "";
+    const stockIdInput = form.querySelector("#stockId");
+    if (stockIdInput) stockIdInput.value = "";
 
     // select2’leri sıfırla
     $('#recordModal select.select2').val(null).trigger('change');
@@ -949,11 +951,15 @@ recordModal.addEventListener('hidden.bs.modal', function () {
     // 4) Lokasyon satırlarını temizle
     if (typeof fillStockLocationRows === 'function') {
         fillStockLocationRows([]);
-    window.isEditMode = false;
     } else {
         const wrapper = document.getElementById("stockLocationsWrapper");
         if (wrapper) { wrapper.innerHTML = ""; }
     }
+    window.isEditMode = false;
+
+    // 4.1) Hidden stok id temizle
+    const stockIdInput = form.querySelector("#stockId");
+    if (stockIdInput) stockIdInput.value = "";
 
     // 5) Backdrop ve body cleanup (çift modal/backdrop bug’ını engellemek için)
     document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
