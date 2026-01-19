@@ -204,12 +204,12 @@ function applyFilters() {
                 case 0: fieldValue = stock.sparePartNo; break;
                 case 1: fieldValue = stock.transmissionBrandName; break;
                 case 2: fieldValue = stock.transmissionCode; break;
-                case 3: fieldValue = stock.vehicleBrandName; break;
-                case 4: fieldValue = stock.vehicleModelName; break;
-                case 5: fieldValue = stock.year ? stock.year.toString() : ""; break;
-                case 6: fieldValue = stock.transmissionNumber; break;
-                case 7: fieldValue = stock.driveTypeName || ""; break;
-                case 8: fieldValue = stock.transmissionStatusName; break;
+                case 3: fieldValue = stock.transmissionNumber; break;
+                case 4: fieldValue = stock.transmissionStatusName; break;
+                case 5: fieldValue = stock.driveTypeName || ""; break;
+                case 6: fieldValue = stock.vehicleBrandName; break;
+                case 7: fieldValue = stock.vehicleModelName; break;
+                case 8: fieldValue = stock.year ? stock.year.toString() : ""; break;
                 case 9: fieldValue = parseShelfSummary(stock.shelfSummary); break;
                 case 10: fieldValue = stock.totalQuantity ? stock.totalQuantity.toString() : ""; break;
                 case 11: fieldValue = stock.description; break;
@@ -226,12 +226,12 @@ function applyFilters() {
                 stock.sparePartNo,
                 stock.transmissionBrandName,
                 stock.transmissionCode,
+                stock.transmissionNumber,
+                stock.transmissionStatusName,
+                stock.driveTypeName || "",
                 stock.vehicleBrandName,
                 stock.vehicleModelName,
                 stock.year ? stock.year.toString() : "",
-                stock.transmissionNumber,
-                stock.driveTypeName || "",
-                stock.transmissionStatusName,
                 parseShelfSummary(stock.shelfSummary),
                 stock.totalQuantity ? stock.totalQuantity.toString() : "",
                 stock.description
@@ -274,12 +274,12 @@ function renderPage(page) {
             <td>${stock.sparePartNo ?? ''}</td>
             <td>${stock.transmissionBrandName ?? ''}</td>
             <td>${stock.transmissionCode ?? ''}</td>
+            <td>${stock.transmissionNumber ?? ''}</td>
+            <td>${stock.transmissionStatusName ?? ''}</td>
+            <td>${stock.driveTypeName ?? ''}</td>
             <td>${stock.vehicleBrandName ?? ''}</td>
             <td>${stock.vehicleModelName ?? ''}</td>
             <td>${stock.year ?? ''}</td>
-            <td>${stock.transmissionNumber ?? ''}</td>
-            <td>${stock.driveTypeName ?? ''}</td>
-            <td>${stock.transmissionStatusName ?? ''}</td>
             <td>${parseShelfSummary(stock.shelfSummary)}</td>
             <td>${stock.totalQuantity ?? 0}</td>
             <td>${stock.description ?? ''}</td>
